@@ -51,6 +51,13 @@
                 <td th:text="${tarefa.descricao}"></td>
                 <td th:text="${tarefa.concluida ? 'Concluída' : 'Não Concluída'}"></td>
                 <td th:text="${tarefa.prazo}"></td>
+                <td>
+                    <form th:action="@{/tarefas/{id}/concluir(id=${tarefa.id})}" method="post">
+                        <button type="submit"
+                                th:text="${tarefa.concluida ? 'Desmarcar' : 'Concluir'}">
+                        </button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>
