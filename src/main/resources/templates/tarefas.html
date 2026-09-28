@@ -16,14 +16,17 @@
 
         <label for="titulo">Título:</label>
         <input type="text" id="titulo" th:field="*{titulo}">
+        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
         <br><br>
 
         <label for="descricao">Descrição:</label>
         <textarea id="descricao" th:field="*{descricao}"></textarea>
+        <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
         <br><br>
 
         <label for="prazo">Prazo:</label>
         <input type="date" id="prazo" th:field="*{prazo}">
+        <span th:if="${#fields.hasErrors('prazo')}" th:errors="*{prazo}"></span>
         <br><br>
 
         <button type="submit">Adicionar tarefa</button>
