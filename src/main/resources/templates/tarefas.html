@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Tarefas</title>
+</head>
+
+<body>
+
+    <h1>Minhas Tarefas</h1>
+
+    <h2>Nova Tarefa</h2>
+
+    <form th:action="@{/tarefas}" th:object="${tarefa}" method="post">
+
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" th:field="*{titulo}">
+        <br><br>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" th:field="*{descricao}"></textarea>
+        <br><br>
+
+        <label for="prazo">Prazo:</label>
+        <input type="date" id="prazo" th:field="*{prazo}">
+        <br><br>
+
+        <button type="submit">Adicionar tarefa</button>
+
+    </form>
+
+    <h2>Tarefas cadastradas</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Status</th>
+                <th>Prazo</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="tarefa : ${tarefas}">
+                <td th:text="${tarefa.titulo}"></td>
+                <td th:text="${tarefa.descricao}"></td>
+                <td th:text="${tarefa.concluida ? 'Concluída' : 'Não Concluída'}"></td>
+                <td th:text="${tarefa.prazo}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
