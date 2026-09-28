@@ -21,14 +21,14 @@ public class Tarefa {
     @NotBlank (message = "O título é obrigatório.")
     @Size (max = 100, message = "O título deve ter no máximo 100 caracteres")
     @Pattern (
-        regexp = " ",
+        regexp = "^[\\p{L}\\p{N} .,!?()'\"\\-:/]+$",
         message = "O título contém caracteres não permitidos"
     )
     private String titulo;
 
     @Size (max = 500, message = "A descrição deve ter no máximo 500 caracteres.")
     @Pattern(
-        regexp = " ",
+        regexp = "^$|^[\\p{L}\\p{N} .,!?()'\"\\-:/]+$",
         message = "A descrição contém caracteres não permitidos"
     )
     private String descricao;
