@@ -161,7 +161,7 @@ input[type="submit"] {
     border: none;
     border-radius: 12px;
 
-    background: #a62d62;
+    background: #ca4c63;
 
     color: white;
 
@@ -176,7 +176,7 @@ input[type="submit"] {
 
 button:hover,
 input[type="submit"]:hover {
-    background: #cb3878;
+    background: #ea5873;
 
     transform: translateY(-2px);
 
@@ -209,7 +209,7 @@ body > p {
 
 table {
     width: 100%;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     border-spacing: 0 10px;
 }
@@ -217,7 +217,7 @@ table {
 /*Cabeçalho*/
 th {
     padding: 14px;
-    background: #ca4c83;
+    background: #ca4c63;
     color: white;
     text-align: left;
     font-size: 20px;
