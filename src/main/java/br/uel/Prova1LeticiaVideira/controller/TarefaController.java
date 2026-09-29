@@ -27,6 +27,15 @@ public class TarefaController {
         return "tarefas";
     }
 
+    @GetMapping ("/excluir/{id}")
+    public String excluirTarefa (@PathVariable Long id){
+        Tarefa tarefa = tarefaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Tarefa inválida: " + id));
+
+        tarefaRepository.delete(tarefa);
+
+        return "redirect:/";
+    }
+
     @PostMapping ("/tarefas")
     public String adicionarTarefa (@Valid @ModelAttribute("tarefa") Tarefa tarefa, BindingResult result, Model model){
         if (result.hasErrors()){
