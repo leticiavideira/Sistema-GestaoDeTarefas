@@ -4,34 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestão de Tarefas</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 
-    <h1>Minhas Tarefas</h1>
+    <h1>· Minhas Tarefas ·</h1>
 
-    <h2>Nova Tarefa</h2>
 
-    <form th:action="@{/tarefas}" th:object="${tarefa}" method="post">
-
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" th:field="*{titulo}">
-        <span th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
-        <br><br>
-
-        <label for="descricao">Descrição:</label>
-        <textarea id="descricao" th:field="*{descricao}"></textarea>
-        <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
-        <br><br>
-
-        <label for="prazo">Prazo:</label>
-        <input type="date" id="prazo" th:field="*{prazo}">
-        <span th:if="${#fields.hasErrors('prazo')}" th:errors="*{prazo}"></span>
-        <br><br>
-
-        <button type="submit">Adicionar tarefa</button>
-
-    </form>
 
     <h2>Tarefas cadastradas</h2>
 
@@ -40,8 +20,9 @@
             <tr>
                 <th>Título</th>
                 <th>Descrição</th>
-                <th>Status</th>
                 <th>Prazo</th>
+                <th>Status</th>
+                <th colspan="2">Ações</th>
             </tr>
         </thead>
 
@@ -49,17 +30,23 @@
             <tr th:each="tarefa : ${tarefas}">
                 <td th:text="${tarefa.titulo}"></td>
                 <td th:text="${tarefa.descricao}"></td>
-                <td th:text="${tarefa.concluida ? 'Concluída' : 'Não Concluída'}"></td>
-                <td th:text="${tarefa.prazo}"></td>
+                <td th:text="${#temporals.format(tarefa.prazo, 'dd/MM/yyyy')}"></td>
+                <td>
+                    <span th:class="${tarefa.concluida ? 'status-concluida' : 'status-pendente'}"
+                        th:text="${tarefa.concluida ? 'Concluída✓' : 'Não ConcluídaX'}">
+                    </span>
+                </td>
                 <td>
                     <form th:action="@{/tarefas/{id}/concluir(id=${tarefa.id})}" method="post">
-                        <button type="submit"
+                        <button class="btn-concluir"
+                                type="submit"
                                 th:text="${tarefa.concluida ? 'Desmarcar' : 'Concluir'}">
                         </button>
                     </form>
                 </td>
                 <td>
-                    <a th:href="@{/excluir/{id}(id=${tarefa.id})}">
+                    <a class="btn-excluir"
+                        th:href="@{/excluir/{id}(id=${tarefa.id})}">
                         Excluir
                     </a>
                 </td>
@@ -69,6 +56,30 @@
     <p th:if="${tarefas.isEmpty()}">
         Ainda não existem tarefas cadastradas.
     </p>
+
+
+        <h2>Nova Tarefa</h2>
+
+    <form th:action="@{/tarefas}" th:object="${tarefa}" method="post">
+
+        <label for="titulo">Título: <span class="obrigatorio">*</span></label>
+        <input type="text" id="titulo" th:field="*{titulo}" placeholder="Digite o título da tarefa...">
+        <span class="field-error" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+        <br><br>
+
+        <label for="descricao">Descrição: <span class="opcional">(opcional)</span></label>
+        <textarea id="descricao" th:field="*{descricao}" placeholder="Digite aqui a descrição da tarefa..."></textarea>
+        <span class="field-error" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+        <br><br>
+
+        <label for="prazo">Prazo: <span class="obrigatorio">*</span></label>
+        <input type="date" id="prazo" th:field="*{prazo}">
+        <span class="field-error" th:if="${#fields.hasErrors('prazo')}" th:errors="*{prazo}"></span>
+        <br><br>
+
+        <button type="submit">Adicionar tarefa</button>
+
+    </form>
 
 </body>
 
