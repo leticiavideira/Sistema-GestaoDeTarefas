@@ -3,11 +3,6 @@
 > Aplicação web para gerenciamento de tarefas, desenvolvida com **Java, Spring Boot, Thymeleaf, Spring Data JPA e SQLite**, aplicando o padrão arquitetural MVC.
 
 
-
-
-\
-
-
 ---
 
 ## 📖 Sobre o projeto
@@ -492,11 +487,3 @@ A estrutura adotada neste projeto utiliza SQLite como banco de dados, com persis
 **Letícia Videira Gois**
 
 Estudante de Ciência da Computação — Universidade Estadual de Londrina (UEL)
-
-
-
----
-
-\<p align="center">
-&#x20; Desenvolvido por \<strong>Letícia Videira Gois\</strong>
-\</p>
